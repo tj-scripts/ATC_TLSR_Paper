@@ -1,0 +1,4 @@
+[submodule "Firmware/tc32_macos"]
+	path = Firmware/tc32_macos
+	url = https://github.com/flyskywhy/tc32
+	branch = macos

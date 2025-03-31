@@ -1,13 +1,17 @@
 TEL_CHIP := -DCHIP_TYPE=CHIP_TYPE_8258
 
 ifeq ($(OS), Windows_NT)
-	TC32_COMPILER_PATH := "tc32_windows\\bin\\"
-	WINDOWS_PREFIX :=$(TC32_COMPILER_PATH)
-	LINUX_CHMOD := 
+    TC32_COMPILER_PATH := "tc32_windows\\bin\\"
+    WINDOWS_PREFIX :=$(TC32_COMPILER_PATH)
+    LINUX_MACOS_CHMOD := 
+else ifeq ($(shell uname), Darwin)
+    TC32_COMPILER_PATH := ./tc32_macos/bin/
+    WINDOWS_PREFIX :=
+    LINUX_MACOS_CHMOD := chmod 777 -R ./tc32_macos/
 else
-	TC32_COMPILER_PATH := ./tc32_linux/bin/
-	WINDOWS_PREFIX :=
-	LINUX_CHMOD := chmod 777 -R ./tc32_linux/
+    TC32_COMPILER_PATH := ./tc32_linux/bin/
+    WINDOWS_PREFIX :=
+    LINUX_MACOS_CHMOD := chmod 777 -R ./tc32_linux/
 endif
 
 LIBS :=  -llt_8258
@@ -119,10 +123,10 @@ pre-build:
 	-@echo ' '
 
 chmod_all:
-	-@$(LINUX_CHMOD)
+	-@$(LINUX_MACOS_CHMOD)
 	-@echo 'chmod_all'
 
 secondary-outputs: $(BIN_FILE) $(LST_FILE) sizedummy
 
 .PHONY: all clean
-.SECONDARY: main-build 
+.SECONDARY: main-build

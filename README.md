@@ -1,3 +1,6 @@
+[中文变更日志](CHANGELOG_zh.md) | [English Changelog](CHANGELOG.md)
+[中文](README_zh.md) | [English](README.md)
+
 # ATC_TLSR_Paper
 Custom BLE firmware for Hanshow E-Paper Shelf Labels / Price Tags using the TLSR8359 ARM SOC
 
